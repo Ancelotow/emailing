@@ -1,0 +1,26 @@
+###
+# @name Add state
+POST http://localhost:3000/state/A Envoye
+Content-Type: application/json
+Accept: application/json
+
+###
+# @name Get all states
+GET http://localhost:3000/state
+Accept: application/json
+
+###
+# @name Update state
+PUT http://localhost:3000/state
+Accept: application/json
+Content-Type: application/json
+
+{
+  "idstate": 1,
+  "label": "Le brouillon"
+}
+
+###
+# @name Delete state
+DELETE http://localhost:3000/state/1
+Accept: application/json

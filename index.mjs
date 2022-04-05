@@ -2,6 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import swaggerUI from 'swagger-ui-express'
 import {routerMsg} from "./routes/message.routes.mjs";
+import {routerState} from "./routes/state.routes.mjs";
 import {config} from 'dotenv'
 import morgan from 'morgan'
 
@@ -20,6 +21,7 @@ app.use(morgan('dev'))
 
 // Routers
 app.use(routerMsg)
+app.use(routerState)
 
 app.listen(port, () => {
     console.log(`Server listen on port ${port}`)
