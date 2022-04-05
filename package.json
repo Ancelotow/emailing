@@ -1,0 +1,19 @@
+{
+  "name": "emailing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ancelotow/emailing.git"
+  },
+  "author": "Emailing squad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ancelotow/emailing/issues"
+  },
+  "homepage": "https://github.com/Ancelotow/emailing#readme"
+}
