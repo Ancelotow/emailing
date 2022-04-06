@@ -37,7 +37,7 @@ const DeleteState = (id) => {
         } else {
             Delete(id).then((res) => {
                 if (res) {
-                    resolve({status: 201, data: "State has been deleted."})
+                    resolve({status: 200, data: "State has been deleted."})
                 } else {
                     resolve({status: 400, data: "This state not exist."})
                 }

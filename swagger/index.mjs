@@ -1,4 +1,5 @@
 import messages from "./message/index.mjs";
+import states from "./state/index.mjs";
 
 export default {
     openapi: "3.0.1",
@@ -20,10 +21,12 @@ export default {
     ],
     paths: {
         ...messages.paths,
+        ...states.paths,
     },
     components: {
         schemas: {
             ...messages.schema,
+            ...states.schema,
         },
     },
 };
