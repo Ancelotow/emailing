@@ -26,6 +26,7 @@ const Add = (message) => {
         const request = `INSERT INTO message(object, content, senddate, sendhour, idstate, idlist, idmodel)
                          VALUES ('${message.object}', '${message.content}', ${sendDate}, ${sendHour}
                                  , ${message.idstate}, ${message.idlist}, ${message.idmodel})`
+        console.log(request)
         pool.query(request, (error, result) => {
             if (error) {
                 reject(error)
