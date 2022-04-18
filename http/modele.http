@@ -1,0 +1,40 @@
+###
+# @name Add model
+POST http://localhost:3000/model
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "SendMessage",
+  "filename": "templates/SMessage.html"
+}
+
+###
+# @name Delete model
+DELETE http://localhost:3000/model/3
+Accept: application/json
+
+###
+# @name Get all models
+GET http://localhost:3000/model
+Accept: application/json
+
+###
+# @name Update model
+PUT http://localhost:3000/model
+Accept: application/json
+Content-Type: application/json
+
+{
+  "idModel": 6,
+  "name": "SMessage",
+  "filename": "templates/SMessage.html"
+}
+
+###
+# @name Get model with person
+GET http://localhost:3000/model/6?firstname=Gabriel&lastname=UZAN
+Accept: application/json
+
+
+
