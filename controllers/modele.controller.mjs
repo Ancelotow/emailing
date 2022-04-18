@@ -15,7 +15,7 @@ const AddModel = (model) => {
                 if (res) {
                     resolve({status: 201, data: "Model created."})
                 } else {
-                    resolve({status: 405, data: "Model already existed."})
+                    resolve({status: 400, data: "Model already existed."})
                 }
             }).catch((e) => {
                 resolve({status: 500, data: e})
@@ -40,7 +40,7 @@ const AddModel = (model) => {
                 if (res) {
                     resolve({status: 201, data: "Model has been deleted."})
                 } else {
-                    resolve({status: 405, data: "Model not exist."})
+                    resolve({status: 400, data: "Model not exist."})
                 }
             }).catch((e) => {
                 resolve({status: 500, data: e})
@@ -79,7 +79,7 @@ const AddModel = (model) => {
                 if (res) {
                     resolve({status: 200, data: "Model updated."})
                 } else {
-                    resolve({status: 405, data: "model not exist."})
+                    resolve({status: 400, data: "model not exist."})
                 }
             }).catch((e) => {
                 resolve({status: 500, data: e})
@@ -87,7 +87,7 @@ const AddModel = (model) => {
         }
     });
 }
-  
+
 
 
 export {AddModel,DeleteModel,GetAllModel,UpdateModel}

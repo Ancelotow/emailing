@@ -1,6 +1,6 @@
 ###
 # @name Add state
-POST http://localhost:3000/state/A Envoye
+POST http://localhost:3000/state/envoye
 Content-Type: application/json
 Accept: application/json
 
@@ -16,8 +16,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "idstate": 1,
-  "label": "Le brouillon"
+  "idstate": 7,
+  "label": "envoyé"
 }
 
 ###

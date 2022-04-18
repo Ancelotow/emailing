@@ -1,0 +1,4 @@
+###
+# @name Get statistics
+GET http://localhost:3000/statistics
+Accept: application/json

@@ -5,7 +5,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "name": "SendMessage",
+  "name": "HelloMessage",
   "filename": "templates/SMessage.html"
 }
 

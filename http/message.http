@@ -8,7 +8,7 @@ Accept: application/json
   "object": "Perquisition",
   "content": "Bonjour, vous serez perquisitionnez demain",
   "idlist": 1,
-  "idmodel": 4,
+  "idmodel": 6,
   "idstate": 2
 }
 
@@ -24,9 +24,11 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "idmessage": 4,
+  "idmessage": 9,
   "object": "Hello",
   "content": "Bonjour, vous serez perquisitionnez demain",
+  "sentDate": "2022-05-22",
+  "sentHour": "15:25",
   "idlist": 1,
   "idmodel": 1,
   "idstate": 2

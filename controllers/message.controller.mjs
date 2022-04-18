@@ -1,4 +1,4 @@
-import {Message, Add, Delete, Update, GetAll} from "../models/message.mjs";
+import messageMod from "../models/message.mjs";
 
 /**
  * Add a new message
@@ -19,7 +19,7 @@ const AddMessage = (message) => {
             if(message.sendHour === null) {
                 message.sendHour = (new Date()).getTime()
             }
-            Add(message).then((res) => {
+            messageMod.Add(message).then((res) => {
                 if (res) {
                     resolve({status: 201, data: "Message has been created."})
                 } else {
@@ -43,7 +43,7 @@ const DeleteMessage = (id) => {
         if (id == null ) {
             resolve({status: 400, data: "Missing parameters."})
         } else {
-            Delete(id).then((res) => {
+            messageMod.Delete(id).then((res) => {
                 if (res) {
                     resolve({status: 201, data: "Message has been deleted."})
                 } else {
@@ -71,7 +71,7 @@ const UpdateMessage = (message) => {
         } else if (message.idlist === null || message.idmodel == null) {
             resolve({status: 400, data: "Missing parameters."})
         } else {
-            Update(message).then((res) => {
+            messageMod.Update(message).then((res) => {
                 if (res) {
                     resolve({status: 200, data: "Message has been updated."})
                 } else {
@@ -91,7 +91,7 @@ const UpdateMessage = (message) => {
  */
 const GetAllMessage = () => {
     return new Promise((resolve, _) => {
-        GetAll().then((res) => {
+        messageMod.GetAll().then((res) => {
             resolve({status: 200, data: res})
         }).catch((e) => {
             resolve({status: 500, data: e})

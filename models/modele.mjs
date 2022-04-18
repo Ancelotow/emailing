@@ -7,6 +7,31 @@ class Model {
     filename
 }
 
+/**
+ * Get if model exists
+ * @param name Name of model
+ * @returns {Promise<unknown>}
+ * @constructor
+ */
+const IfExists = (name) => {
+    return new Promise((resolve, reject) => {
+        const request = `SELECT COUNT(*)
+                         FROM model
+                         WHERE name = '${name}'`
+        pool.query(request, (error, result) => {
+            if (error) {
+                reject(error)
+            } else {
+                let res = (result.rows.length > 0) ? result.rows[0] : null
+                if(res && res.count > 0) {
+                    resolve(true)
+                } else {
+                    resolve(false)
+                }
+            }
+        });
+    });
+}
 
 /**
  * Add new model
@@ -16,17 +41,25 @@ class Model {
  */
  const Add = (model) => {
     return new Promise((resolve, reject) => {
-        const request = `INSERT INTO model(name, filename)
-                         VALUES ('${model.name}', '${model.filename}')`
-        console.log(request)
-        console.log(model.name + " " + model.filename)
-        pool.query(request, (error, result) => {
-            if (error) {
-                reject(error)
+        IfExists(model.name).then((ifExists) => {
+            if(ifExists) {
+                resolve(false)
             } else {
-                resolve(true)
-                console.log("request")
+                const request = `INSERT INTO model(name, filename)
+                         VALUES ('${model.name}', '${model.filename}')`
+                console.log(request)
+                console.log(model.name + " " + model.filename)
+                pool.query(request, (error, result) => {
+                    if (error) {
+                        reject(error)
+                    } else {
+                        resolve(true)
+                        console.log("request")
+                    }
+                });
             }
+        }).catch((e) => {
+            reject(e)
         });
     });
 }
@@ -37,7 +70,7 @@ class Model {
  * @returns {Promise<unknown>}
  * @constructor
  */
- const GetById = (id) => {
+const GetById = (id) => {
     return new Promise((resolve, reject) => {
         const request = `SELECT *
                          FROM model
@@ -110,19 +143,27 @@ class Model {
  */
  const Update = (model) => {
     return new Promise((resolve, reject) => {
-        GetById(model.idModel).then((result) => {
-            if (result) {
-                const request = `UPDATE model SET name = '${model.name}', filename   = '${model.filename}' WHERE idModel = ${model.idModel}`
-                console.log(request)
-                pool.query(request, (error, _) => {
-                    if (error) {
-                        reject(error)
-                    } else {
-                        resolve(true)
-                    }
-                });
-            } else {
+        IfExists(model.name).then((ifExists) => {
+            if(ifExists) {
                 resolve(false)
+            } else {
+                GetById(model.idModel).then((result) => {
+                    if (result) {
+                        const request = `UPDATE model SET name = '${model.name}', filename   = '${model.filename}' WHERE idModel = ${model.idModel}`
+                        console.log(request)
+                        pool.query(request, (error, _) => {
+                            if (error) {
+                                reject(error)
+                            } else {
+                                resolve(true)
+                            }
+                        });
+                    } else {
+                        resolve(false)
+                    }
+                }).catch((e) => {
+                    reject(e)
+                });
             }
         }).catch((e) => {
             reject(e)

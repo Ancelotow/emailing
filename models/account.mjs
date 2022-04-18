@@ -31,7 +31,13 @@ const GetAccount = (login, password) => {
     });
 }
 
-const IfExistsLogin = (login, password) => {
+/**
+ * If exists account with this login
+ * @param login The login
+ * @returns {Promise<unknown>}
+ * @constructor
+ */
+const IfExistsLogin = (login) => {
     return new Promise((resolve, reject) => {
         const request = `SELECT COUNT(*)
                          FROM account
@@ -79,4 +85,30 @@ const Add = (account) => {
     });
 }
 
-export {Account, Add, GetAccount}
+/**
+ * Get length of account
+ * @param isAdmin If account is admin
+ * @returns {Promise<unknown>}
+ * @constructor
+ */
+const Length = (isAdmin = false) => {
+    return new Promise((resolve, reject) => {
+        const request = `SELECT COUNT(*)
+                         FROM account
+                         WHERE is_admin = '${isAdmin}'`
+        pool.query(request, (error, result) => {
+            if (error) {
+                reject(error)
+            } else {
+                let res = (result.rows.length > 0) ? result.rows[0] : null
+                if(res) {
+                    resolve(res.count)
+                } else {
+                    resolve(0)
+                }
+            }
+        });
+    });
+}
+
+export default {Account, Add, GetAccount, Length}
