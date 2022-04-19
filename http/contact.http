@@ -1,0 +1,77 @@
+###
+# @name Add contact
+POST http://localhost:3000/contact
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "NewContact",
+  "firstname": "Matthieu",
+  "lastname": "Barriere",
+  "mail": "test.test@sfr.fr",
+  "creationDate": "2022-04-19"
+}
+
+###
+# @name Get all contacts
+GET http://localhost:3000/contact
+Accept: application/json
+
+###
+# @name Delete contact
+DELETE http://localhost:3000/contact/2
+Accept: application/json
+
+###
+# @name Update contact
+PUT http://localhost:3000/contact
+Accept: application/json
+Content-Type: application/json
+
+{
+  "idcontact": 3,
+  "name": "Contact 1",
+  "firstname": "Matthieu",
+  "lastname": "Barriere",
+  "mail": "test.test111@sfr.fr",
+  "creationDate": "2050-12-18"
+}
+
+###
+# CONTACT LIST
+###
+
+###
+# @name Get all contacts list
+GET http://localhost:3000/contactlist
+Accept: application/json
+
+###
+# @name Add contact list
+POST http://localhost:3000/contactlist
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "NewContactList",
+  "description": "Description de la contact list",
+  "creationDate": "2022-04-19"
+}
+
+###
+# @name Delete contact list
+DELETE http://localhost:3000/contactlist/1
+Accept: application/json
+
+###
+# @name Update contact list
+PUT http://localhost:3000/contactlist
+Accept: application/json
+Content-Type: application/json
+
+{
+  "idcontact": 1,
+  "name": "Contact list 1",
+  "description": "Ma description contact list",
+  "creationDate": "24/12/2050"
+}
