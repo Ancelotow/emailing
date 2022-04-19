@@ -81,6 +81,30 @@ const GetAll = () => {
 }
 
 /**
+ * Get length of contact
+ * @returns {Promise<unknown>}
+ * @constructor
+ */
+const Length = () => {
+    return new Promise((resolve, reject) => {
+        const request = `SELECT COUNT(*)
+                         FROM contact`
+        pool.query(request, (error, result) => {
+            if (error) {
+                reject(error)
+            } else {
+                let res = (result.rows.length > 0) ? result.rows[0] : null
+                if (res) {
+                    resolve(res.count)
+                } else {
+                    resolve(0)
+                }
+            }
+        });
+    });
+}
+
+/**
  * Delete a contact by his ID
  * @param id The ID of the contact to delete
  * @returns {Promise<unknown>}
@@ -268,6 +292,30 @@ const UpdateList = (contactlist) => {
     });
 }
 
+/**
+ * Get length of list
+ * @returns {Promise<unknown>}
+ * @constructor
+ */
+const LengthList = () => {
+    return new Promise((resolve, reject) => {
+        const request = `SELECT COUNT(*)
+                         FROM list`
+        pool.query(request, (error, result) => {
+            if (error) {
+                reject(error)
+            } else {
+                let res = (result.rows.length > 0) ? result.rows[0] : null
+                if (res) {
+                    resolve(res.count)
+                } else {
+                    resolve(0)
+                }
+            }
+        });
+    });
+}
+
 export default {
     GetAll,
     Add,
@@ -280,5 +328,7 @@ export default {
     ContactList,
     GetByIdForList,
     DeleteList,
-    UpdateList
+    UpdateList,
+    Length,
+    LengthList
 }
