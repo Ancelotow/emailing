@@ -6,7 +6,7 @@ import axios from 'axios'
  * @type {CronJob}
  */
 const sendMail = new CronJob('* 5 * * * *', function () {
-    axios.post('http://localhost:3000/login', {login:"", password:""}).then(async (res) => {
+    axios.post('http://localhost:3000/login', {login:"test", password:"azerty"}).then(async (res) => {
         const token = res.data
         // To
     });
