@@ -9,6 +9,8 @@ import {routerContact} from "./routes/contact.routes.mjs";
 import swaggerUI from 'swagger-ui-express'
 import swagger from './swagger/index.mjs'
 import {config} from 'dotenv'
+import authToken from './middleware/auth.mjs'
+import jobCron from "./cron/index.mjs"
 import morgan from 'morgan'
 
 const app = express()
@@ -27,6 +29,9 @@ app.use('/swagger', swaggerUI.serve, swaggerUI.setup(swagger))
 // Console
 app.use(morgan('dev'))
 
+// Token JWT
+app.use(authToken)
+
 // Routers
 app.use(routerMsg)
 app.use(routerState)
@@ -34,6 +39,9 @@ app.use(routerStats)
 app.use(routerContact)
 app.use(routerAuth)
 app.use(routerMod)
+
+// Cron Jobs
+jobCron.startJob()
 
 app.listen(port, () => {
     console.log(`Server listen on port ${port}`)
